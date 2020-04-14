@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const copypkg = require('copy-pkg-json-webpack-plugin');
 
 function determineMode() {
     return process.env.NODE_ENV;
@@ -18,11 +19,7 @@ const shared = {
         path: __dirname + '/dist',
         filename: 'main.bundle.js'
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html')
-        })
-    ]
+
 }
 
 module.exports = [
@@ -34,6 +31,16 @@ module.exports = [
             path: __dirname + '/dist',
             filename: 'main.bundle.js'
         },
+        plugins: [
+            new copypkg({
+                remove: ['scripts', 'devDependencies', 'build'],
+                replace: {
+                    main: './main.bundle.js',
+                    scripts: { start: 'electron ./main.bundle.js' },
+                    postinstall: 'electron-builder install-app-deps',
+                },
+            })
+        ]
     },
     {
         ...shared,
@@ -43,5 +50,10 @@ module.exports = [
             path: __dirname + '/dist',
             filename: 'react.bundle.js'
         },
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, './src/index.html')
+            })
+        ]
     }
 ];
