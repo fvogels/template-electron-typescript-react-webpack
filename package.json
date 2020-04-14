@@ -5,7 +5,7 @@
   "main": "dist/main.bundle.js",
   "scripts": {
     "test": "mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.ts",
-    "start": "npm run build && electron ./dist/electron.js",
+    "start": "electron ./dist/main.bundle.js",
     "development": "rimraf dist && cross-env NODE_ENV=development webpack --progress --colors --config ./webpack.config.js",
     "production": "rimraf dist && cross-env NODE_ENV=production webpack --progress --colors --config ./webpack.config.js",
     "build:win": "electron-builder build --win --x64",
