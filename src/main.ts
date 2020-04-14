@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 
 function createWindow () {
-  // Create the browser window.
   let win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -10,22 +9,21 @@ function createWindow () {
     }
   });
 
-  // and load the index.html of the app.
   win.loadFile('index.html');
+  win.setMenu(null);
 }
+
 
 app.on('ready', createWindow);
 
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+      app.quit();
+  }
+});
 
-// // Quit when all windows are closed.
-// app.on('window-all-closed', () => {
-//   if (process.platform !== 'darwin') {
-//       app.quit();
-//   }
-// });
-
-// app.on('activate', () => {
-//   if (mainWindow === null) {
-//       createWindow();
-//   }
-// });
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === null) {
+      createWindow();
+  }
+});
