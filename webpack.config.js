@@ -6,7 +6,7 @@ function determineMode() {
     return process.env.NODE_ENV;
 }
 
-const output_path = path.join(__dirname, 'dist');
+const output_path = path.join(__dirname, 'build');
 
 const shared = {
     mode: determineMode(),
