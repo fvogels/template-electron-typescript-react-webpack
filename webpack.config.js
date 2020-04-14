@@ -19,7 +19,6 @@ const shared = {
         path: __dirname + '/dist',
         filename: 'main.bundle.js'
     },
-
 }
 
 module.exports = [
