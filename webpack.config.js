@@ -6,6 +6,8 @@ function determineMode() {
     return process.env.NODE_ENV;
 }
 
+const output_path = path.join(__dirname, 'dist');
+
 const shared = {
     mode: determineMode(),
     module: {
@@ -14,11 +16,7 @@ const shared = {
             include: /src/,
             use: [{ loader: 'ts-loader' }]
         }]
-    },
-    output: {
-        path: __dirname + '/dist',
-        filename: 'main.bundle.js'
-    },
+    }
 }
 
 module.exports = [
@@ -27,7 +25,7 @@ module.exports = [
         entry: './src/main.ts',
         target: 'electron-main',
         output: {
-            path: __dirname + '/dist',
+            path: output_path,
             filename: 'main.bundle.js'
         },
         plugins: [
@@ -46,7 +44,7 @@ module.exports = [
         entry: './src/renderer.tsx',
         target: 'electron-renderer',
         output: {
-            path: __dirname + '/dist',
+            path: output_path,
             filename: 'react.bundle.js'
         },
         plugins: [
