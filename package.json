@@ -24,8 +24,7 @@
       "target": "pkg"
     },
     "win": {
-      "target": "nsis",
-      "asar": false
+      "target": "nsis"
     },
     "buildVersion": "0.1.0"
   },
