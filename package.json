@@ -1,22 +1,24 @@
 {
   "name": "electron-app",
   "version": "0.1.0",
-  "description": "",
+  "description": "Description",
   "main": "build/main.bundle.js",
   "scripts": {
     "test": "mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.ts",
-    "start": "electron ./build/main.bundle.js",
-    "development": "rimraf build && cross-env NODE_ENV=development webpack --progress --colors --config ./webpack.config.js",
-    "production": "rimraf build && cross-env NODE_ENV=production webpack --progress --colors --config ./webpack.config.js",
-    "build:win": "electron-builder build --win --x64",
-    "build:mac": "electron-builder build --mac --x64"
+    "start": "npm run build:dev && electron ./build/main.bundle.js",
+    "build:dev": "rimraf build && cross-env NODE_ENV=development webpack --progress --colors --config ./webpack.config.js",
+    "build:prod": "rimraf build && cross-env NODE_ENV=production webpack --progress --colors --config ./webpack.config.js",
+    "dist:win": "rimraf dist && electron-builder build --win --x64",
+    "dist:mac": "rimraf dist && electron-builder build --mac --x64",
+    "full:win": "npm run build:prod && npm run dist:win",
+    "full:mac": "npm run build:prod && npm run dist:mac"
   },
   "build": {
     "appId": "sample.electron.app",
     "productName": "Sample App",
     "directories": {
       "app": "./build/",
-      "output": "./out/"
+      "output": "./dist/"
     },
     "mac": {
       "target": "pkg"
