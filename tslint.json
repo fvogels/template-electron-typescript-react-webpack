@@ -1,0 +1,12 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {
+        "triple-equals": true,
+        "strict-comparisons": true
+    },
+    "rules": { },
+    "rulesDirectory": []
+}

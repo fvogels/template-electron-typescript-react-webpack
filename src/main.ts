@@ -1,7 +1,8 @@
-const { app, BrowserWindow } = require('electron');
+import { app, BrowserWindow } from 'electron';
+
 
 function createWindow () {
-  let win = new BrowserWindow({
+  const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
