@@ -4,7 +4,7 @@ import { expect } from 'chai';
 
 
 describe('Sample test', () => {
-    it('should have duration 1', () => {
+    it('true should be true', () => {
         expect(true).to.be.equal(true);
     });
 });
