@@ -4,7 +4,7 @@
   "description": "Description",
   "main": "build/main.bundle.js",
   "scripts": {
-    "test": "mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.ts",
+    "test": "npm run linter && mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.ts",
     "start": "npm run build:dev && electron ./build/main.bundle.js",
     "linter": "tslint -c tslint.json src/**/*.ts src/**/*.tsx",
     "build:dev": "rimraf build && npm run linter && cross-env NODE_ENV=development webpack --progress --colors --config ./webpack.config.js",
