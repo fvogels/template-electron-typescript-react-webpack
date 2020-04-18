@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const copypkg = require('copy-pkg-json-webpack-plugin');
+const CopyPkgJson = require('copy-pkg-json-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 function determineMode() {
     return process.env.NODE_ENV;
@@ -16,6 +17,10 @@ const shared = {
             include: /src/,
             use: [{ loader: 'ts-loader' }]
         }]
+    },
+    resolve: {
+        extensions: [ '.js', '.json', '.ts', '.tsx' ],
+        plugins: [ new TsconfigPathsPlugin() ]
     }
 }
 
@@ -29,7 +34,7 @@ module.exports = [
             filename: 'main.bundle.js'
         },
         plugins: [
-            new copypkg({
+            new CopyPkgJson({
                 remove: ['scripts', 'devDependencies', 'build'],
                 replace: {
                     main: './main.bundle.js',
